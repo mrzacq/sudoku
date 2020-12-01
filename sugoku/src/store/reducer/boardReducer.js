@@ -17,9 +17,9 @@ export default function boardReducer(state = initialState, action) {
     case "CHANGE_BOARD":
       const { value, x, y } = action.payload;
       const setBoards = (boards) => {
-        let boardsTemp = [...boards];
-        boardsTemp[x][y] = Number(value);
-        return boardsTemp;
+        let allBoard = [...boards];
+        allBoard[x][y] = Number(value);
+        return allBoard;
       };
       return { ...state, boards: setBoards(state.boards) };
     case "PLAY_AGAIN":
