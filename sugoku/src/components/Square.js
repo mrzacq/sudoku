@@ -1,14 +1,13 @@
 import React from "react";
-import { SafeAreaView, FlatList, TextInput, View , Text} from "react-native";
-import { Button } from "react-native-paper";
+import { SafeAreaView, FlatList, TextInput, View, Text } from "react-native";
 
-function Square({boards}) {
+function Square({ boards, changeBoard }) {
   return (
     <SafeAreaView
       style={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <FlatList
@@ -37,19 +36,21 @@ function Square({boards}) {
                       }}
                       keyboardType={"numeric"}
                       maxLength={1}
-                      >
+                      value={`${board === 0 ? '' : ''}`}
+                      onChangeText={(text) => changeBoard(text, index, y)}
+                    >
                       {board}
                     </TextInput>
                   );
                 } else {
                   return (
                     <TextInput
-                    key={y}
-                    keyboardType={"numeric"}
-                    maxLength={1}
-                    style={{
-                      width: 35,
-                      height: 35,
+                      key={y}
+                      keyboardType={"numeric"}
+                      maxLength={1}
+                      style={{
+                        width: 35,
+                        height: 35,
                         borderColor: "black",
                         borderWidth: 1,
                         display: "flex",
@@ -61,9 +62,9 @@ function Square({boards}) {
                         alignContent: "center",
                         justifyContent: "center",
                       }}
-                    >
-                      {board}
-                    </TextInput>
+                      value={`${board === 0 ? '' : ''}`}
+                      onChangeText={(text) => changeBoard(text, index, y)}
+                    ></TextInput>
                   );
                 }
               })}
@@ -71,7 +72,7 @@ function Square({boards}) {
           );
         }}
         keyExtractor={(item, i) => `${i}`}
-        />
+      />
     </SafeAreaView>
   );
 }
