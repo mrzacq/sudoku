@@ -14,22 +14,34 @@ import {
 function Board(props) {
   const dispatch = useDispatch();
 
-  const boards = useSelector((initialState) => initialState.boardReducer.boards);
-  const loading = useSelector((initialState) => initialState.boardReducer.isLoading);
-  const solved = useSelector((initialState) => initialState.boardReducer.isSolved);
+  const boards = useSelector(
+    (initialState) => initialState.boardReducer.boards
+  );
+  const loading = useSelector(
+    (initialState) => initialState.boardReducer.isLoading
+  );
+  const solved = useSelector(
+    (initialState) => initialState.boardReducer.isSolved
+  );
 
-  const username = useSelector((initialState) => initialState.userReducer.username);
+  const username = useSelector(
+    (initialState) => initialState.userReducer.username
+  );
   const level = useSelector((initialState) => initialState.userReducer.level);
 
   const [isStarted, setIsStarted] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [loadingSolve, setLoadingSolve] = useState(false);
   const [timer, setTimer] = useState(false);
-
+  
   useEffect(() => {
-    dispatch(getBoard());
     console.log("Game dimulai");
+    loadBoard()
   }, []);
+
+  function loadBoard(){
+    dispatch(getBoard())
+  }
   useEffect(() => {
     if (solved) {
       endGame();
@@ -51,6 +63,7 @@ function Board(props) {
   }
   function createBoard(value, x, y) {
     dispatch(changeBoard(value, x, y));
+    console.log("Board terupdate");
   }
 
   function endGame() {

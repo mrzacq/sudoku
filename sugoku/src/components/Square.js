@@ -33,11 +33,12 @@ function Square({ boards, changeBoard }) {
                         alignContent: "center",
                         justifyContent: "center",
                         marginVertical: 0,
+                        backgroundColor: 'pink'
                       }}
                       keyboardType={"numeric"}
                       maxLength={1}
                       value={`${board === 0 ? '' : ''}`}
-                      onChangeText={(text) => changeBoard(text, index, y)}
+                      onChangeText={(number) => changeBoard(number, index, y)}
                     >
                       {board}
                     </TextInput>
@@ -63,7 +64,7 @@ function Square({ boards, changeBoard }) {
                         justifyContent: "center",
                       }}
                       value={`${board === 0 ? '' : ''}`}
-                      onChangeText={(text) => changeBoard(text, index, y)}
+                      onChangeText={(number) => changeBoard(number, index, y)}
                     ></TextInput>
                   );
                 }
